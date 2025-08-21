@@ -22,9 +22,7 @@ This is a fully responsive e-commerce product page built with React and TypeScri
 - Framer Motion v12
 - ESLint
 
-### Screenshot
-
-![](./screenshot.jpg)
+## Get started
 
 1. Clone the repository:
 
