@@ -4,15 +4,15 @@ import React, {
   useState,
   type ReactNode,
 } from "react";
-import { type TagLineData } from "@/lib/Tagline";
+import { type ProductsData } from "@/lib/ProductData";
 
-type CartItem = TagLineData & { quantity: number };
+type CartItem = ProductsData & { quantity: number };
 
 interface CartContextType {
   cartItems: CartItem[];
   isCartOpen: boolean;
   setIsCartOpen: (open: boolean) => void;
-  addToCart: (product: TagLineData, quantity: number) => void;
+  addToCart: (product: ProductsData, quantity: number) => void;
   removeFromCart: (id: number) => void;
   clearCart: () => void;
 }
@@ -25,7 +25,7 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
 
-  const addToCart = (product: TagLineData, quantity: number) => {
+  const addToCart = (product: ProductsData, quantity: number) => {
     setCartItems((prev) => {
       const existing = prev.find((item) => item.id === product.id);
       if (existing) {

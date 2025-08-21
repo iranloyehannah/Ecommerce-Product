@@ -1,4 +1,6 @@
+// ==================== Animation ==================== 
 import { motion, AnimatePresence } from "framer-motion";
+// ==================== Icons ==================== 
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
 
 interface MainImageProps {

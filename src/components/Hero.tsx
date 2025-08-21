@@ -1,12 +1,14 @@
-// =============== React & State  ===============
+// =============== Images & Icon ===============
 import useIsMobile from "@/hooks/useIsMobile";
 import { Images } from "@/lib/ImgData";
-import { useState } from "react";
 import { HiX } from "react-icons/hi";
+// ==================== useState ==================== 
+import { useState } from "react";
+// ==================== Components ==================== 
 import MainImage from "./MainImage";
 import Thumbnails from "./Thumbnails";
 import Product from "./Product";
-import { TagLine } from "@/lib/Tagline";
+import { ProductDescription } from "@/lib/ProductData";
 
 const Hero: React.FC = () => {
   const [isSelected, setIsSelected] = useState(0);
@@ -30,26 +32,26 @@ const Hero: React.FC = () => {
         {isMobile ? (
           // Mobile View
           <>
- <>
-  <div className="relative">
-    {/* Main Image */}
-    <MainImage
-      images={Images}
-      selectedIndex={isSelected}
-      direction={direction}
-      onNext={handleNext}
-      onPrev={handlePrev}
-    />
+            <>
+              <div className="container mx-auto flex flex-col  ">
+                {/* Main Image */}
+                <div className="w-full ">
+                  <MainImage
+                    images={Images}
+                    selectedIndex={isSelected}
+                    direction={direction}
+                    onNext={handleNext}
+                    onPrev={handlePrev}
+                  />
+                </div>
 
-    {/* Product Text Overlay */}
-    <div className="absolute top-[85%] bg-white flex items-center justify-center">
-      <div className=" w-[95%]">
-        <Product tagline={TagLine} />
-      </div>
-    </div>
-  </div>
-</>
-</>
+                {/* Product Description */}
+                <div className="w-full max-w-[95%] mx-auto mt-6">
+                  <Product products={ProductDescription} />
+                </div>
+              </div>
+            </>
+          </>
         ) : (
           // Desktop view
           <div className="w-full  flex md:gap-5 lg:gap-0 lg:justify-around ">
@@ -67,44 +69,44 @@ const Hero: React.FC = () => {
               />
             </div>
             {/* Tagline */}
-            <Product tagline={TagLine} />
+            <Product products={ProductDescription} />
           </div>
         )}
       </div>
       {/* Desktop view image modal */}
-     {showModal && !isMobile && (
-  <div
-    className="fixed inset-0 bg-black/75 z-50 flex items-center justify-center"
-    onClick={() => setShowModal(false)}
-  >
-    {/* close Button */}
-    <div
-      className="flex flex-col w-full max-w-[420px]"
-      onClick={(e) => e.stopPropagation()}
-    >
-      <button
-        onClick={() => setShowModal(false)}
-        className="flex justify-end mb-4"
-      >
-        <HiX className="w-6 h-6 text-[var(--orange)]" />
-      </button>
-      <div className="space-y-4 gap-2">
-        <MainImage
-          images={Images}
-          selectedIndex={isSelected}
-          direction={direction}
-          onNext={handleNext}
-          onPrev={handlePrev}
-        />
-        <Thumbnails
-          images={Images}
-          selectedIndex={isSelected}
-          onSelect={setIsSelected}
-        />
-      </div>
-    </div>
-  </div>
-)}
+      {showModal && !isMobile && (
+        <div
+          className="fixed inset-0 bg-black/75 z-50 flex items-center justify-center"
+          onClick={() => setShowModal(false)}
+        >
+          {/* close Button */}
+          <div
+            className="flex flex-col w-full max-w-[420px]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setShowModal(false)}
+              className="flex justify-end mb-4"
+            >
+              <HiX className="w-6 h-6 text-[var(--orange)]" />
+            </button>
+            <div className="space-y-4 gap-2">
+              <MainImage
+                images={Images}
+                selectedIndex={isSelected}
+                direction={direction}
+                onNext={handleNext}
+                onPrev={handlePrev}
+              />
+              <Thumbnails
+                images={Images}
+                selectedIndex={isSelected}
+                onSelect={setIsSelected}
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

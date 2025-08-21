@@ -1,6 +1,8 @@
+// ==================== Images ==================== 
 import { Images } from "@/lib/ImgData";
-import { useCart } from "@/context/CartContext";
 import deleteIcon from "../assets/images/icon-delete.svg";
+// ==================== Components ==================== 
+import { useCart } from "@/context/CartContext";
 
 const Cart: React.FC = () => {
   const { cartItems, removeFromCart } = useCart();

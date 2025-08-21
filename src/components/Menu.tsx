@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+// ==================== Images ==================== 
 import HamburgerMenu from "@/assets/images/icon-menu.svg";
 import cartIcon from "@/assets/images/icon-cart.svg";
 import avatarIcon from "@/assets/images/image-avatar.png";
 import closeIcon from "@/assets/images/icon-close.svg";
+// ==================== useState & Router ==================== 
 import { Link } from "react-router-dom";
+import React, { useState } from "react";
+// ==================== Animation ==================== 
 import { motion, AnimatePresence } from "framer-motion";
+// ==================== Components ==================== 
 import Cart from "@/components/Cart";
 import { useCart } from "@/context/CartContext";
 import useIsMobile from "@/hooks/useIsMobile";
@@ -126,7 +130,7 @@ const Menu: React.FC = () => {
         )}
       </AnimatePresence>
 
-      {/* Cart Modal (Mobile Only) */}
+      {/* Mobile Cart Modal  */}
       <AnimatePresence>
         {isMobile && isCartOpen && (
           <motion.div

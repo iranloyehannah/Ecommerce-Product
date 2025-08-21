@@ -1,4 +1,4 @@
-export type TagLineData = {
+export type ProductsData = {
         id:number;
         name: string;
         productName: string;
@@ -8,7 +8,7 @@ export type TagLineData = {
         discount?: number;
 }
 
-export const TagLine: TagLineData[] = [
+export const ProductDescription: ProductsData[] = [
     {
         id: 1,
         name: "SNEAKER COMPANY",

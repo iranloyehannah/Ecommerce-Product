@@ -1,13 +1,16 @@
+// ==================== React State  ====================
 import { useState } from "react";
-import { type TagLineData } from "@/lib/Tagline";
+// ==================== Icons ====================
 import { FaPlus, FaMinus } from "react-icons/fa";
 import { MdOutlineShoppingCart } from "react-icons/md";
+// ==================== Components ====================
+import { type ProductsData } from "@/lib/ProductData";
 import { useCart } from "@/context/CartContext";
 
 interface ProductData {
-  tagline: TagLineData[];
+  products: ProductsData[];
 }
-const ProductTag: React.FC<ProductData> = ({ tagline }) => {
+const ProductTag: React.FC<ProductData> = ({ products }) => {
   const [count, setCount] = useState(0);
   const { addToCart, setIsCartOpen } = useCart();
 
@@ -15,7 +18,7 @@ const ProductTag: React.FC<ProductData> = ({ tagline }) => {
   const countMinus = () => setCount(count > 0 ? count - 1 : count);
 
   // Automatically Opens Cart
-  const handleAddToCart = (product: TagLineData) => {
+  const handleAddToCart = (product: ProductsData) => {
     if (count > 0) {
       addToCart(product, count);
       setIsCartOpen(true);
@@ -24,11 +27,11 @@ const ProductTag: React.FC<ProductData> = ({ tagline }) => {
   };
 
   return (
-    <div className=" w-full max-w-[500px] h-auto">
-      {tagline.map((product) => (
+    <div className=" w-full max-w-[500px] ">
+      {products.map((product) => (
         <article
           key={product.id}
-          className="flex flex-col gap-6 h-[450px]  font-normal text-base  p-4 rounded-lg m-2"
+          className="flex flex-col gap-10 h-[450px] font-normal text-base  p-6 rounded-lg m-2"
         >
           {/* Product Header */}
           <div className="space-y-2 font-bold ">
@@ -39,7 +42,7 @@ const ProductTag: React.FC<ProductData> = ({ tagline }) => {
           </div>
 
           {/* Product Info */}
-          <div className="space-y-2">
+          <div className="space-y-5">
             <p className="text-[var(--Dark-grayish-blue)]">
               {product.description}
             </p>
@@ -77,7 +80,9 @@ const ProductTag: React.FC<ProductData> = ({ tagline }) => {
 
             {/* Cart Button */}
             <button
-              className="flex items-center justify-center rounded-lg h-10 gap-2 bg-[var(--orange)] px-20 py-6 font-bold cursor-pointer hover:bg-[var(--orange)]/60 shadow-[0_4px_10px_var(--orange)]"
+              className="flex items-center justify-center gap-2 rounded-lg px-20 py-3 font-bold cursor-pointer
+           bg-[var(--orange)] hover:bg-[var(--orange)]/60
+           shadow-[0_4px_10px_var(--orange)] md:[box-shadow:none]"
               onClick={() => handleAddToCart(product)}
             >
               <MdOutlineShoppingCart size={20} />

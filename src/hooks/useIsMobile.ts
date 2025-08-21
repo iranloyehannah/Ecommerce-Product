@@ -1,19 +1,24 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
- const useIsMobile = (breakpoint:number = 768) => {
-    const checkMobile = () => typeof window !== "undefined" && window.innerWidth < breakpoint;
-    const [isMobile, setIsMobile] = useState<boolean>(checkMobile());
+const useIsMobile = (breakpoint = 768) => {
+  // Check mobile only when window exists (SSR-safe)
+  const checkIsMobile = useCallback(() => {
+    return typeof window !== "undefined" && window.innerWidth < breakpoint;
+  }, [breakpoint]);
 
-    useEffect(() => {
-        const handleResize = () => setIsMobile(checkMobile());
+  const [isMobile, setIsMobile] = useState(checkIsMobile);
 
-        window.addEventListener("resize", handleResize);
-        return () => {
-            window.removeEventListener("resize", handleResize);
-        };
-    }, [breakpoint]);
+  useEffect(() => {
+    const handleResize = () => setIsMobile(checkIsMobile());
 
-    return isMobile;
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [checkIsMobile]);
+
+  return isMobile;
 };
 
-export default useIsMobile
+export default useIsMobile;

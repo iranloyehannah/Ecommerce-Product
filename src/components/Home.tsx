@@ -1,3 +1,4 @@
+// ==================== Components ==================== 
 import Menu from "./Menu";
 import Hero from "./Hero";
 
